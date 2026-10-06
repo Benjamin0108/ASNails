@@ -1,0 +1,582 @@
+const PRODUCTS = [
+
+    {
+        id: 1,
+        name: "ASN Smart Hub",
+        price: 89.90,
+        tag: "NEU",
+        icon: "◈",
+        description:
+            "Kompakter Hub für dein modernes Setup."
+    },
+
+    {
+        id: 2,
+        name: "ASN Power Dock",
+        price: 59.90,
+        tag: "TOP",
+        icon: "▣",
+        description:
+            "Praktische Strom- und Anschlusslösung."
+    },
+
+    {
+        id: 3,
+        name: "ASN Cable Pro",
+        price: 19.90,
+        tag: "PRO",
+        icon: "⌁",
+        description:
+            "Robustes Premium-Kabel für den Alltag."
+    },
+
+    {
+        id: 4,
+        name: "ASN Desk Light",
+        price: 44.90,
+        tag: "",
+        icon: "◐",
+        description:
+            "Minimalistische Schreibtischleuchte."
+    },
+
+    {
+        id: 5,
+        name: "ASN Mini Stand",
+        price: 29.90,
+        tag: "",
+        icon: "△",
+        description:
+            "Stabiler Standfuß mit cleanem Design."
+    },
+
+    {
+        id: 6,
+        name: "ASN Travel Kit",
+        price: 74.90,
+        tag: "SET",
+        icon: "□",
+        description:
+            "Komplettes Zubehör für unterwegs."
+    }
+
+];
+
+
+function euro(price) {
+
+    return price.toLocaleString(
+        "de-DE",
+        {
+            style: "currency",
+            currency: "EUR"
+        }
+    );
+
+}
+
+
+function getCart() {
+
+    return JSON.parse(
+        localStorage.getItem("asnCart") || "[]"
+    );
+
+}
+
+
+function saveCart(cart) {
+
+    localStorage.setItem(
+        "asnCart",
+        JSON.stringify(cart)
+    );
+
+    updateCartCount();
+
+}
+
+
+function updateCartCount() {
+
+    const cart = getCart();
+
+    const count = cart.reduce(
+        (sum, item) =>
+            sum + item.quantity,
+        0
+    );
+
+    document
+        .querySelectorAll("#cartCount")
+        .forEach(element => {
+            element.textContent = count;
+        });
+
+}
+
+
+function addToCart(productId) {
+
+    const cart = getCart();
+
+    const item = cart.find(
+        item => item.id === productId
+    );
+
+
+    if (item) {
+
+        item.quantity++;
+
+    } else {
+
+        cart.push({
+            id: productId,
+            quantity: 1
+        });
+
+    }
+
+
+    saveCart(cart);
+
+    alert(
+        "Produkt wurde zum Warenkorb hinzugefügt."
+    );
+
+}
+
+
+function renderProducts(
+    elementId,
+    products
+) {
+
+    const container =
+        document.getElementById(elementId);
+
+    if (!container) return;
+
+
+    container.innerHTML =
+        products.map(product => `
+
+        <article class="product">
+
+            <a
+                href="produkt.html?id=${product.id}"
+                class="product-art">
+
+                <span>
+                    ${product.icon}
+                </span>
+
+                ${
+                    product.tag
+                    ?
+                    `<em>${product.tag}</em>`
+                    :
+                    ""
+                }
+
+            </a>
+
+
+            <div class="product-info">
+
+                <h3>
+                    ${product.name}
+                </h3>
+
+                <p>
+                    ${product.description}
+                </p>
+
+
+                <div class="product-bottom">
+
+                    <strong>
+                        ${euro(product.price)}
+                    </strong>
+
+                    <button
+                        onclick="addToCart(${product.id})">
+
+                        + Warenkorb
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+
+    `).join("");
+
+}
+
+
+function renderDetail() {
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+    const id =
+        Number(params.get("id")) || 1;
+
+
+    const product =
+        PRODUCTS.find(
+            item => item.id === id
+        ) || PRODUCTS[0];
+
+
+    const container =
+        document.getElementById("detail");
+
+
+    container.innerHTML = `
+
+        <a href="shop.html">
+            ← Zurück zum Shop
+        </a>
+
+
+        <div class="detail-grid">
+
+            <div class="detail-art">
+
+                ${product.icon}
+
+            </div>
+
+
+            <div>
+
+                <p class="eyebrow">
+                    ${product.tag || "ASN PRODUCT"}
+                </p>
+
+
+                <h1>
+                    ${product.name}
+                </h1>
+
+
+                <p class="lead">
+                    ${product.description}
+                </p>
+
+
+                <p>
+                    Durchdachtes Design,
+                    hochwertige Verarbeitung und
+                    einfache Bedienung.
+                </p>
+
+
+                <div class="price">
+                    ${euro(product.price)}
+                </div>
+
+
+                <div class="buy">
+
+                    <input
+                        id="quantity"
+                        type="number"
+                        value="1"
+                        min="1">
+
+                    <button
+                        class="btn"
+                        onclick="addProductWithQuantity(${product.id})">
+
+                        In den Warenkorb
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+function addProductWithQuantity(id) {
+
+    const quantity =
+        Math.max(
+            1,
+            Number(
+                document.getElementById(
+                    "quantity"
+                ).value
+            ) || 1
+        );
+
+
+    const cart = getCart();
+
+
+    const item =
+        cart.find(
+            item => item.id === id
+        );
+
+
+    if (item) {
+
+        item.quantity += quantity;
+
+    } else {
+
+        cart.push({
+            id: id,
+            quantity: quantity
+        });
+
+    }
+
+
+    saveCart(cart);
+
+
+    alert(
+        "Produkt wurde zum Warenkorb hinzugefügt."
+    );
+
+}
+
+
+function renderCart() {
+
+    const container =
+        document.getElementById("cart");
+
+
+    if (!container) return;
+
+
+    const cart = getCart();
+
+
+    if (cart.length === 0) {
+
+        container.innerHTML = `
+
+            <div class="empty">
+
+                <h2>
+                    Dein Warenkorb ist leer.
+                </h2>
+
+                <p>
+                    Füge im Shop ein Produkt hinzu.
+                </p>
+
+                <a
+                    class="btn"
+                    href="shop.html">
+
+                    Zum Shop
+
+                </a>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    let total = 0;
+
+
+    const rows =
+        cart.map(item => {
+
+            const product =
+                PRODUCTS.find(
+                    p => p.id === item.id
+                );
+
+
+            const subtotal =
+                product.price *
+                item.quantity;
+
+
+            total += subtotal;
+
+
+            return `
+
+                <div class="cart-row">
+
+                    <div class="mini-art">
+                        ${product.icon}
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            ${product.name}
+                        </h3>
+
+                        <small>
+                            ${euro(product.price)}
+                            pro Stück
+                        </small>
+
+                    </div>
+
+
+                    <input
+                        type="number"
+                        min="1"
+                        value="${item.quantity}"
+                        onchange="
+                            changeQuantity(
+                                ${product.id},
+                                this.value
+                            )
+                        ">
+
+
+                    <strong>
+                        ${euro(subtotal)}
+                    </strong>
+
+
+                    <button
+                        onclick="
+                            removeFromCart(
+                                ${product.id}
+                            )
+                        ">
+
+                        Entfernen
+
+                    </button>
+
+                </div>
+
+            `;
+
+        }).join("");
+
+
+    container.innerHTML = `
+
+        <div class="cart-list">
+
+            ${rows}
+
+        </div>
+
+
+        <div class="cart-total">
+
+            <strong>
+                Gesamt:
+                ${euro(total)}
+            </strong>
+
+
+            <button
+                class="btn"
+                onclick="checkout()">
+
+                Zur Kasse →
+
+            </button>
+
+        </div>
+
+    `;
+
+}
+
+
+function changeQuantity(
+    productId,
+    value
+) {
+
+    const cart = getCart();
+
+
+    const item =
+        cart.find(
+            item => item.id === productId
+        );
+
+
+    if (item) {
+
+        item.quantity =
+            Math.max(
+                1,
+                Number(value) || 1
+            );
+
+    }
+
+
+    saveCart(cart);
+
+    renderCart();
+
+}
+
+
+function removeFromCart(productId) {
+
+    const cart =
+        getCart().filter(
+            item => item.id !== productId
+        );
+
+
+    saveCart(cart);
+
+    renderCart();
+
+}
+
+
+function checkout() {
+
+    alert(
+        "Demo-Kasse: Bestellung wurde vorbereitet."
+    );
+
+}
+
+
+function sendMessage(event) {
+
+    event.preventDefault();
+
+    document
+        .getElementById("sent")
+        .hidden = false;
+
+    event.target.reset();
+
+}
+
+
+updateCartCount();

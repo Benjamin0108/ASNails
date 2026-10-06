@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Tutorial – ASN</title>
+
+    <link
+        rel="stylesheet"
+        href="assets/style.css">
+
+</head>
+
+<body>
+
+<header>
+
+    <a href="index.html" class="logo">
+        ASN
+        <span>SHOP</span>
+    </a>
+
+    <nav>
+
+        <a href="shop.html">
+            Shop
+        </a>
+
+        <a class="active" href="tutorial.html">
+            Tutorial
+        </a>
+
+        <a href="kontakt.html">
+            Kontakt
+        </a>
+
+        <a href="warenkorb.html">
+            🛒 Warenkorb
+            <b id="cartCount">0</b>
+        </a>
+
+    </nav>
+
+</header>
+
+
+<main class="page">
+
+    <p class="eyebrow">
+        TUTORIAL
+    </p>
+
+    <h1>
+        So funktioniert ASN
+    </h1>
+
+
+    <div class="steps">
+
+        <article>
+            <b>01</b>
+            <h2>Produkt auswählen</h2>
+
+            <p>
+                Öffne den Shop und suche dir
+                dein gewünschtes Produkt aus.
+            </p>
+        </article>
+
+
+        <article>
+            <b>02</b>
+            <h2>In den Warenkorb</h2>
+
+            <p>
+                Klicke auf „+ Warenkorb“,
+                um das Produkt hinzuzufügen.
+            </p>
+        </article>
+
+
+        <article>
+            <b>03</b>
+            <h2>Warenkorb prüfen</h2>
+
+            <p>
+                Im Warenkorb kannst du Mengen
+                verändern oder Produkte entfernen.
+            </p>
+        </article>
+
+
+        <article>
+            <b>04</b>
+            <h2>Kontakt</h2>
+
+            <p>
+                Bei Fragen kannst du jederzeit
+                unsere Kontaktseite verwenden.
+            </p>
+        </article>
+
+    </div>
+
+</main>
+
+
+<footer>
+    © 2026 ASN Shop
+</footer>
+
+
+<script src="assets/app.js"></script>
+
+</body>
+</html>

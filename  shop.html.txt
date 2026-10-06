@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Shop – ASN</title>
+
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+
+<header>
+
+    <a href="index.html" class="logo">
+        ASN
+        <span>SHOP</span>
+    </a>
+
+    <nav>
+        <a class="active" href="shop.html">Shop</a>
+        <a href="tutorial.html">Tutorial</a>
+        <a href="kontakt.html">Kontakt</a>
+
+        <a href="warenkorb.html">
+            🛒 Warenkorb
+            <b id="cartCount">0</b>
+        </a>
+    </nav>
+
+</header>
+
+
+<main class="page">
+
+    <p class="eyebrow">
+        ASN SHOP
+    </p>
+
+    <h1>
+        Alle Produkte
+    </h1>
+
+    <p class="lead">
+        Unsere aktuelle Produktauswahl.
+    </p>
+
+    <div
+        id="products"
+        class="product-grid">
+    </div>
+
+</main>
+
+
+<footer>
+    <span>© 2026 ASN Shop</span>
+    <a href="kontakt.html">Kontakt</a>
+</footer>
+
+
+<script src="assets/app.js"></script>
+
+<script>
+    renderProducts("products", PRODUCTS);
+</script>
+
+</body>
+</html>

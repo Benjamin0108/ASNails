@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASN Shop</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+
+<header>
+    <a href="index.html" class="logo">
+        ASN
+        <span>SHOP</span>
+    </a>
+
+    <nav>
+        <a href="shop.html">Shop</a>
+        <a href="tutorial.html">Tutorial</a>
+        <a href="kontakt.html">Kontakt</a>
+        <a href="warenkorb.html">
+            🛒 Warenkorb
+            <b id="cartCount">0</b>
+        </a>
+    </nav>
+</header>
+
+<main>
+
+<section class="hero">
+
+    <div class="hero-text">
+        <p class="eyebrow">ASN PRO SHOP</p>
+
+        <h1>
+            Technik, die
+            <mark>einfach funktioniert.</mark>
+        </h1>
+
+        <p class="lead">
+            Entdecke hochwertige Produkte im modernen ASN Shop.
+            Einfach auswählen, in den Warenkorb legen und loslegen.
+        </p>
+
+        <a href="shop.html" class="btn">
+            Zum Shop →
+        </a>
+    </div>
+
+    <div class="hero-card">
+        ASN
+        <small>PRO COLLECTION</small>
+    </div>
+
+</section>
+
+
+<section class="section">
+
+    <p class="eyebrow">HIGHLIGHTS</p>
+
+    <h2>Beliebte Produkte</h2>
+
+    <div id="featured" class="product-grid"></div>
+
+</section>
+
+
+<section class="banner">
+
+    <div>
+        <p class="eyebrow">TUTORIAL</p>
+        <h2>Du brauchst Hilfe?</h2>
+        <p>
+            In unserem Tutorial erklären wir dir,
+            wie der ASN Shop funktioniert.
+        </p>
+    </div>
+
+    <a href="tutorial.html" class="btn light">
+        Tutorial öffnen
+    </a>
+
+</section>
+
+</main>
+
+
+<footer>
+    <span>© 2026 ASN Shop</span>
+    <a href="kontakt.html">Kontakt</a>
+</footer>
+
+
+<script src="assets/app.js"></script>
+
+<script>
+    renderProducts(
+        "featured",
+        PRODUCTS.slice(0, 3)
+    );
+</script>
+
+</body>
+</html>

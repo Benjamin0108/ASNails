@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Kontakt – ASN</title>
+
+    <link
+        rel="stylesheet"
+        href="assets/style.css">
+
+</head>
+
+<body>
+
+<header>
+
+    <a href="index.html" class="logo">
+        ASN
+        <span>SHOP</span>
+    </a>
+
+    <nav>
+
+        <a href="shop.html">
+            Shop
+        </a>
+
+        <a href="tutorial.html">
+            Tutorial
+        </a>
+
+        <a class="active" href="kontakt.html">
+            Kontakt
+        </a>
+
+        <a href="warenkorb.html">
+            🛒 Warenkorb
+            <b id="cartCount">0</b>
+        </a>
+
+    </nav>
+
+</header>
+
+
+<main class="page contact">
+
+    <div>
+
+        <p class="eyebrow">
+            KONTAKT
+        </p>
+
+        <h1>
+            Wir helfen dir weiter.
+        </h1>
+
+        <p class="lead">
+            Schreib uns über das Kontaktformular.
+        </p>
+
+    </div>
+
+
+    <form
+        onsubmit="sendMessage(event)">
+
+        <label>
+            Name
+
+            <input
+                type="text"
+                required
+                placeholder="Dein Name">
+        </label>
+
+
+        <label>
+            E-Mail
+
+            <input
+                type="email"
+                required
+                placeholder="name@beispiel.de">
+        </label>
+
+
+        <label>
+            Nachricht
+
+            <textarea
+                required
+                rows="6"
+                placeholder="Wie können wir helfen?">
+            </textarea>
+
+        </label>
+
+
+        <button
+            class="btn"
+            type="submit">
+
+            Nachricht senden
+
+        </button>
+
+
+        <p
+            id="sent"
+            class="success"
+            hidden>
+
+            Danke! Deine Nachricht wurde
+            für diese Demo angenommen.
+
+        </p>
+
+    </form>
+
+</main>
+
+
+<footer>
+    © 2026 ASN Shop
+</footer>
+
+
+<script src="assets/app.js"></script>
+
+</body>
+</html>
